@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="confirmation-panel fade-in">
+    <div class="glass-panel">
+        <div class="success-icon">✓</div>
+        <h2>Booking Confirmed</h2>
+        <p>Thank you, <strong>{{ booking.customer_name }}</strong>. Your reservation has been successfully placed.</p>
+        
+        <div class="booking-details">
+            <h3>Reservation Details</h3>
+            <p><strong>Booking ID:</strong> #{{ booking.booking_id }}</p>
+            <p><strong>Room Type:</strong> {{ booking.room_type }}</p>
+            <p><strong>Check-in:</strong> {{ booking.check_in_date }} at {{ booking.check_in_time }}</p>
+            <p><strong>Check-out:</strong> {{ booking.check_out_date }}</p>
+            <p><strong>Stay Duration:</strong> {{ booking.nights }} night(s)</p>
+            <p><strong>Rate:</strong> ₹{{ "{:,.0f}".format(booking.price) }} / night</p>
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                <p style="font-size: 1.25rem; font-weight: 700;">Total Amount: ₹{{ "{:,.0f}".format(booking.total_price) }}</p>
+            </div>
+        </div>
+        
+        <div class="cta-buttons" style="justify-content: center;">
+            <a href="{{ url_for('index') }}" class="btn btn-outline">Return Home</a>
+            <a href="{{ url_for('rooms') }}" class="btn btn-primary">Book Another</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

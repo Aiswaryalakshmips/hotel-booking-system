@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="page-header fade-in">
+    <h2>Available Rooms</h2>
+    <p>Find the perfect accommodation for your stay.</p>
+</div>
+
+<div class="room-grid fade-in">
+    {% for room in rooms %}
+    <div class="room-card">
+        <div class="room-image">
+            {% if 'Standard' in room.room_type %}
+                <img src="{{ url_for('static', filename='images/standard.png') }}" alt="Standard Room">
+            {% elif 'Deluxe' in room.room_type %}
+                <img src="{{ url_for('static', filename='images/deluxe.png') }}" alt="Deluxe Room">
+            {% elif 'Luxury' in room.room_type %}
+                <img src="{{ url_for('static', filename='images/luxury.png') }}" alt="Luxury Suite">
+            {% elif 'Presidential' in room.room_type %}
+                <img src="{{ url_for('static', filename='images/presidential.png') }}" alt="Presidential Suite">
+            {% else %}
+                <img src="{{ url_for('static', filename='images/luxury.png') }}" alt="Room">
+            {% endif %}
+        </div>
+        <div class="room-info">
+            <h3>{{ room.room_type }}</h3>
+            <p class="room-desc">{{ room.description }}</p>
+            <div class="price-row">
+                <p class="price">₹{{ "{:,.0f}".format(room.price) }} <span>/ night</span></p>
+                <a href="{{ url_for('book', room_id=room.room_id) }}" class="btn btn-outline">Select</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center" style="grid-column: 1/-1;">
+        <p>No rooms currently available.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

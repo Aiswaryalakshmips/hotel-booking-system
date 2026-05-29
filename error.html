@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="confirmation-panel glass-panel text-center pop-in">
+    <div class="success-icon" style="color: #ff4b4b;">⚠️</div>
+    <h2>Oops! <span>Something went wrong.</span></h2>
+    <p>{{ message }}</p>
+    
+    <div class="cta-buttons" style="margin-top: 2rem;">
+        <a href="{{ url_for('index') }}" class="btn btn-outline">Return to Home</a>
+    </div>
+</div>
+{% endblock %}

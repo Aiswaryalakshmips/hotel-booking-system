@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="hero fade-in">
+    <div class="hero-content">
+        <h1>Refined luxury for the modern traveler.</h1>
+        <p>Experience unparalleled tranquility in our curated selection of premium stays, designed with sophisticated simplicity.</p>
+        <div class="cta-buttons">
+            <a href="{{ url_for('rooms') }}" class="btn btn-primary">Explore Rooms</a>
+            <a href="{{ url_for('book') }}" class="btn btn-outline">Make a Reservation</a>
+        </div>
+    </div>
+    <div class="hero-image-container">
+        <img src="{{ url_for('static', filename='images/hero.png') }}" alt="Luxurious Hotel Interior" class="hero-image">
+    </div>
+</section>
+{% endblock %}

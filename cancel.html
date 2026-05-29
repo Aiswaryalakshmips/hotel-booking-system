@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="page-header fade-in">
+    <h2>Cancel Reservation</h2>
+    <p>Enter your Booking ID to cancel your reservation.</p>
+</div>
+
+<div class="form-container fade-in">
+    <div class="glass-panel">
+        <form action="{{ url_for('cancel') }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this booking?');">
+            <div class="form-group">
+                <label for="booking_id">Booking ID</label>
+                <input type="number" id="booking_id" name="booking_id" required placeholder="e.g., 101">
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100" style="background: var(--error);">Cancel Reservation</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

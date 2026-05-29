@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="page-header fade-in">
+    <h2>Make a Reservation</h2>
+    <p>Fill in your details to secure your room.</p>
+</div>
+
+<div class="form-container fade-in">
+    <div class="glass-panel">
+        <form action="{{ url_for('book') }}" method="POST">
+            <div class="form-group">
+                <label for="customer_name">Full Name</label>
+                <input type="text" id="customer_name" name="customer_name" required placeholder="Enter your full name">
+            </div>
+            
+            <div class="form-group">
+                <label for="room_id">Select a Room</label>
+                <select id="room_id" name="room_id" required>
+                    <option value="" disabled {% if not selected_room %}selected{% endif %}>-- Choose a room --</option>
+                    {% for room in rooms %}
+                        <option value="{{ room.room_id }}" {% if selected_room == room.room_id|string %}selected{% endif %}>
+                            {{ room.room_type }} - ₹{{ "{:,.0f}".format(room.price) }} / night
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label for="check_in_date">Check-in Date</label>
+                    <input type="date" id="check_in_date" name="check_in_date" required>
+                </div>
+                <div class="form-group">
+                    <label for="check_in_time">Check-in Time</label>
+                    <input type="time" id="check_in_time" name="check_in_time" value="14:00">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="check_out_date">Check-out Date</label>
+                <input type="date" id="check_out_date" name="check_out_date" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Confirm Booking</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
